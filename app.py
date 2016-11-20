@@ -58,7 +58,8 @@ def getBillsByManufacturer(man_id):
         if container.est_arrival is not None:
             json_data.append({
                 'bill_of_lading': container.bill_of_lading,
-                'est_arrival': str(container.est_arrival)
+                'est_arrival': str(container.est_arrival),
+                'end_location': container.unload_port
             })
     resp = json.dumps(json_data)
     return resp
