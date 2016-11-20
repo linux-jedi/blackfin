@@ -40,7 +40,8 @@ def getManContainers(man_id):
             'id':container.id,
             'bill_of_lading':container.bill_of_lading,
             'manufacturer':man_id,
-            'location':container.location
+            'location':container.location,
+            'end_location': container.unload_port
         })
     resp = json.dumps(json_data)
     return resp
