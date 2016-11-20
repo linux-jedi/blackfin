@@ -33,4 +33,3 @@ class Container(db.Model):
     exp_availability = db.Column(db.DateTime)
     mode_of_entry = db.Column(db.String(20))
     mode_of_exit = db.Column(db.String(20))
-    

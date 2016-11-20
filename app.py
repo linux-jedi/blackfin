@@ -94,16 +94,19 @@ def containersPerDayByPort(port):
     resp.status_code = 200
     return resp
 
-@app.route('/containers/<shipping_line>', methods=['GET'])
-def containersPerDayByLine(shipping_line):
+@app.route('/shippingline/<shippingline>/containers', methods=['GET'])
+def containersPerDayByLine(shippingline):
     # Get all distinct arrival dates
-
+    arr_dates = ['2016-07-01', '2016-07-29', '2016-07-15', '2016-07-22',
+            '2016-08-05', '2016-08-12', '2016-07-08']
     # Count number of containers on each arrival datetime
+    counts = {}
+    for date in arr_dates:
+        counts[date] = Container.query.filter_by(est_arrival=date).filter_by(shipping_line=shippingline).count()
 
-    # Return JSON like this
-    json_data = {'date1': count[1],
-                'date2': count[2]}
-    return 200
+    resp = jsonify(**counts)
+    resp.status_code = 200
+    return resp
 
 
 '''
