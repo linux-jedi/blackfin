@@ -7,9 +7,9 @@ from models import db
 from models import Container, Manufacturer
 
 app = Flask(__name__)
+db.init_app(app)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DB']
-db.init_app(app)
 
 @app.route('/')
 def index():
@@ -17,7 +17,7 @@ def index():
 
 @app.route('/manufacturers', methods=['GET'])
 def manufacturers():
-    manufacturers = Manufacturer.query.order_by(Org.id)
+    manufacturers = Manufacturer.query.order_by(Manufacturer.id)
     
     json_data = []
     for man in manufacturers:
@@ -63,7 +63,6 @@ def containers(man_id):
         resp = jsonify(**json_data)
         resp.status_code = 200
         return resp
-    else:
 
 
 if __name__ == "__main__":
