@@ -30,7 +30,7 @@ def manufacturers():
 
 @app.route('/manufacturers/<int:man_id>/containers', methods=['GET'])
 def getManContainers(man_id):
-    containers = Container.query.filter_by(manufacturer=man_id).all()
+    containers = Container.query.filter_by(manufacturer_id=man_id).all()
     if containers is None:
         abort(404)
     
