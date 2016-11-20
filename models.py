@@ -13,7 +13,7 @@ class Container(db.Model):
     __tablename__ = "containers"
 
     id = db.Column(db.String(30), primary_key=True)
-    bill_of_lading = db.Column(db.String(30), unique=True)
+    bill_of_lading = db.Column(db.String(30))
     container_size = db.Column(db.Integer)
     location = db.Column(db.String(50))
     manufacturer_id = db.Column(db.Integer, db.ForeignKey("manufacturers.id"))
