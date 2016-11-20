@@ -10,7 +10,7 @@ db = SQLAlchemy(app)
 
 @app.route('/')
 def index():
-    return str(os.environ['DB'])
+    return "Hello World!"
 
 if __name__ == "__main__":
     app.run(debug=True)
