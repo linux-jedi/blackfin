@@ -79,7 +79,7 @@ def containersPerDay():
     return resp
 
 # Get containers recieved per port per date
-@app.route('/containers/<port>', methods=['GET'])
+@app.route('/port/<port>/containers', methods=['GET'])
 def containersPerDayByPort(port):
     # Get estimated arrival dates
     arr_dates = ['2016-07-01', '2016-07-29', '2016-07-15', '2016-07-22',
