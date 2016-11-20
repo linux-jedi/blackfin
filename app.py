@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify, abort
 from flask_sqlalchemy import SQLAlchemy
+from flask_cors import CORS, cross_origin
 
 import datetime, json, os
 
@@ -7,6 +8,7 @@ from models import db
 from models import Container, Manufacturer
 
 app = Flask(__name__)
+CORS(app)
 db.init_app(app)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DB']
