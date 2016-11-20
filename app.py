@@ -5,12 +5,12 @@ import datetime, json, os
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = print os.environ['DB']
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DB']
 db = SQLAlchemy(app)
 
 @app.route('/')
 def index():
-    return os.environ['DB']
+    return str(os.environ['DB'])
 
 if __name__ == "__main__":
     app.run(debug=True)
