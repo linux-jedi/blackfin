@@ -63,8 +63,8 @@ def getBillsByManufacturer(man_id):
     return resp
 
 # Get containers recieved per port per date
-@app.route('/containers/<port>', methods=['GET'])
-def containersPerDayByPort(port):
+@app.route('/containers', methods=['GET'])
+def containersPerDay():
     # Get estimated arrival dates
     arr_dates = ['2016-07-01', '2016-07-29', '2016-07-15', '2016-07-22',
             '2016-08-05', '2016-08-12', '2016-07-08']
@@ -78,8 +78,24 @@ def containersPerDayByPort(port):
     resp.status_code = 200
     return resp
 
+# Get containers recieved per port per date
+@app.route('/containers/<port>', methods=['GET'])
+def containersPerDayByPort(port):
+    # Get estimated arrival dates
+    arr_dates = ['2016-07-01', '2016-07-29', '2016-07-15', '2016-07-22',
+            '2016-08-05', '2016-08-12', '2016-07-08']
+    
+    # Get counts
+    counts = {}
+    for date in arr_dates:
+        counts[date] = Container.query.filter_by(est_arrival=date).filter_by(unload_port=port).count()
+    
+    resp = jsonify(**counts)
+    resp.status_code = 200
+    return resp
+
 @app.route('/containers/<shipping_line>', methods=['GET'])
-def containersPerDay(shipping_line):
+def containersPerDayByLine(shipping_line):
     # Get all distinct arrival dates
 
     # Count number of containers on each arrival datetime
